@@ -3,6 +3,10 @@
         "symfony/console": "2.5",
         "symfony/yaml": "2.5"
     },
+    "require-dev": {
+        "m6web/coke": "1.2.1",
+        "m6web/symfony2-coding-standard": "1.1.0"
+    },
     "autoload": {
         "psr-0": { "": "src/" }
     }

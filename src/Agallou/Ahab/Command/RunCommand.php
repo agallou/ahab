@@ -1,4 +1,5 @@
 <?php
+
 namespace Agallou\Ahab\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -27,6 +28,7 @@ class RunCommand extends BaseCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -44,6 +46,6 @@ class RunCommand extends BaseCommand
         $command = sprintf('sudo docker run -i -t -d %s %s %s', implode(' ', $ports), implode(' ', $volumes), $runConfig->getName());
         $output->writeln($command);
         $output = exec($command);
-        file_put_contents(sprintf('/home/agallou/Projets/%s/.ahabid', $input->getArgument('application')), $output);
+        file_put_contents($this->getContainerIdPath($input), $output);
     }
 }

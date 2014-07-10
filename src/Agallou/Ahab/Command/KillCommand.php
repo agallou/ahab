@@ -21,7 +21,6 @@ class KillCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $containerId = file_get_contents(sprintf('/home/agallou/Projets/%s/.ahabid', $input->getArgument('application')));
-        exec(sprintf('sudo docker kill %s', escapeshellarg($containerId)));
+        exec(sprintf('sudo docker kill %s', escapeshellarg($this->getContainerId($input))));
     }
 }

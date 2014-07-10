@@ -8,14 +8,14 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class EnterCommand extends Command
+class EnterCommand extends BaseCommand
 {
     protected function configure()
     {
+        parent::configure();
         $this
             ->setName('enter')
             ->setDescription('Enters the container')
-            ->addArgument('application')
         ;
     }
 

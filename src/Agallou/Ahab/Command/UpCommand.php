@@ -1,4 +1,5 @@
 <?php
+
 namespace Agallou\Ahab\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -8,18 +9,26 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 
-
-class UpCommand extends Command
+class UpCommand extends BaseCommand
 {
+    /**
+     *
+     */
     protected function configure()
     {
+        parent::configure();
         $this
             ->setName('up')
             ->setDescription('Builds and run the container')
-            ->addArgument('application')
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     *
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('build');

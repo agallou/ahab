@@ -1,4 +1,5 @@
 <?php
+
 namespace Agallou\Ahab\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -7,15 +8,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
-class KillCommand extends Command
+class KillCommand extends BaseCommand
 {
     protected function configure()
     {
+        parent::configure();
         $this
             ->setName('kill')
             ->setDescription('Kills the container')
-            ->addArgument('application')
         ;
     }
 

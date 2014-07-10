@@ -10,31 +10,28 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Agallou\Ahab\ConfigFactory;
 use Agallou\Ahab\Application;
 
-class RunCommand extends Command
+class RunCommand extends BaseCommand
 {
+    /**
+     *
+     */
     protected function configure()
     {
+        parent::configure();
         $this
             ->setName('run')
             ->setDescription('Run the container')
-            ->addArgument('application')
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $ahabPath = $_SERVER['HOME'] . '/.ahab/';
-        $ahabConfigPath = $ahabPath . '/config/';
-        $output->writeLn($ahabConfigPath);
-
-        if (!is_dir($ahabConfigPath)) {
-            mkdir($ahabConfigPath, 0777, true);
-        }
-
-        $factory =  new ConfigFactory($ahabConfigPath);
-        $config = $factory->load($input->getArgument('application'));
-
-
+        $config = $this->getConfiguration($input);
         $runConfig = $config->getRun();
         $ports = array();
         foreach ($runConfig->getPorts() as $port) {

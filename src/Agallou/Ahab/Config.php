@@ -51,10 +51,6 @@ class Config
      */
     public function getRun()
     {
-      return $this->run;
+          return $this->run;
     }
-
-
 }
-
-

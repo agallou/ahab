@@ -7,13 +7,28 @@ use Symfony\Component\Yaml\Parser;
 class ConfigFactory
 {
 
+    /**
+     * @var string
+     */
     protected $configPath;
 
-    public function __construct($configPath) {
+    /**
+     * @param string $configPath
+     */
+    public function __construct($configPath)
+    {
         $this->configPath = $configPath;
     }
 
-    public function load($application) {
+    /**
+     * @param string $application
+     *
+     * @return Config
+     *
+     * @throws \RuntimeException
+     */
+    public function load($application)
+    {
 
         $configPath = $this->configPath . $application;
         $yaml = new Parser();
@@ -45,5 +60,3 @@ class ConfigFactory
         return $config;
     }
 }
-
-

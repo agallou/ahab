@@ -21,12 +21,11 @@ class RunCommand extends BaseCommand
         parent::configure();
         $this
             ->setName('run')
-            ->setDescription('Run the container')
-        ;
+            ->setDescription('Run the container');
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      *
      * @return int|null|void
@@ -43,7 +42,11 @@ class RunCommand extends BaseCommand
         foreach ($runConfig->getVolumes() as $volume) {
             $volumes[] = ' --volume=' . $volume;
         }
-        $command = sprintf('sudo docker run -i -t -d %s %s %s', implode(' ', $ports), implode(' ', $volumes), $runConfig->getName());
+        $command = vsprintf('sudo docker run -i -t -d %s %s %s', array(
+            implode(' ', $ports),
+            implode(' ', $volumes),
+            $runConfig->getName()
+        ));
         $output->writeln($command);
         $output = exec($command);
         file_put_contents($this->getContainerIdPath($input), $output);

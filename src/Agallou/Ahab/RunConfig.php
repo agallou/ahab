@@ -4,13 +4,26 @@ namespace Agallou\Ahab;
 
 class RunConfig
 {
-
+    /**
+     * @var string
+     */
     protected $name;
 
+    /**
+     * @var array
+     */
     protected $volumes = array();
 
+    /**
+     * @var array
+     */
     protected $ports = array();
 
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -18,31 +31,51 @@ class RunConfig
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
-    public function setVolumes(array $volumes) {
-      $this->volumes = $volumes;
-      return $this;
+    /**
+     * @param array $volumes
+     *
+     * @return $this
+     */
+    public function setVolumes(array $volumes)
+    {
+        $this->volumes = $volumes;
+
+        return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getVolumes()
     {
-      return $this->volumes;
+        return $this->volumes;
     }
 
-    public function setPorts(array $ports) {
-      $this->ports = $ports;
-      return $this;
+    /**
+     * @param array $ports
+     *
+     * @return $this
+     */
+    public function setPorts(array $ports)
+    {
+        $this->ports = $ports;
+
+        return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getPorts()
     {
-      return $this->ports;
+        return $this->ports;
     }
-
-
-
 }

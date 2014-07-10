@@ -10,7 +10,7 @@ class Ahab
     protected $path;
 
     /**
-     * @param $path
+     * @param string $path
      */
     public function __construct($path)
     {
@@ -64,5 +64,4 @@ class Ahab
     {
         return $this->initAhabSubdirectory('containers');
     }
-
-} 
+}

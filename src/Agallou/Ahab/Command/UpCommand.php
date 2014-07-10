@@ -9,22 +9,23 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 
+/**
+ */
 class UpCommand extends BaseCommand
 {
     /**
-     *
+     * 
      */
     protected function configure()
     {
         parent::configure();
         $this
             ->setName('up')
-            ->setDescription('Builds and run the container')
-        ;
+            ->setDescription('Builds and run the container');
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      *
      * @return int|null|void

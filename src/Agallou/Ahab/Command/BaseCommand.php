@@ -89,5 +89,4 @@ abstract class BaseCommand extends Command
     {
         return sprintf('%s/%s', $this->getAhab()->getContainersDir(), $input->getArgument('application'));
     }
-
 }

@@ -4,14 +4,22 @@ namespace Agallou\Ahab;
 
 class Application
 {
-
+    /**
+     * @var Config
+     */
     protected $config;
 
+    /**
+     * @param Config $config
+     */
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
+    /**
+     *
+     */
     public function build()
     {
         $buildConfig = $this->config->getBuild();
@@ -25,5 +33,4 @@ class Application
 
         passthru($command);
     }
-
 }

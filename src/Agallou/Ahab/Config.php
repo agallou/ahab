@@ -4,30 +4,51 @@ namespace Agallou\Ahab;
 
 class Config
 {
-
+    /**
+     * @var BuildConfig
+     */
     protected $build;
 
+    /**
+     * @var RunConfig
+     */
     protected $run;
 
+    /**
+     * @return BuildConfig
+     */
     public function getBuild()
     {
         return $this->build;
     }
 
-    public function setBuild($build)
+    /**
+     * @param BuildConfig $build
+     *
+     * @return $this
+     */
+    public function setBuild(BuildConfig $build)
     {
         $this->build = $build;
 
         return $this;
     }
 
-    public function setRun($run)
+    /**
+     * @param RunConfig $run
+     *
+     * @return $this
+     */
+    public function setRun(RunConfig $run)
     {
         $this->run = $run;
 
         return $this;
     }
 
+    /**
+     * @return RunConfig
+     */
     public function getRun()
     {
       return $this->run;

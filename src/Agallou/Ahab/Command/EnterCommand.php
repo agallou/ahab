@@ -19,6 +19,7 @@ class EnterCommand extends BaseCommand
         $this
             ->setName('enter')
             ->setDescription('Enters the container')
+            ->addArgument('cmd', InputArgument::OPTIONAL, '', 'bash')
         ;
     }
 
@@ -30,6 +31,7 @@ class EnterCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        passthru(sprintf('sudo docker-enter %s bash', escapeshellarg($this->getContainerId($input))));
+        $cmd = sprintf('exec >/dev/tty 2>/dev/tty </dev/tty && sudo docker-enter %s %s', $this->getContainerId($input), $input->getArgument('cmd'));
+        passthru($cmd);
     }
 }

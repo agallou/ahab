@@ -14,14 +14,15 @@ use Symfony\Component\Console\Input\ArrayInput;
 class UpCommand extends BaseCommand
 {
     /**
-     * 
+     *
      */
     protected function configure()
     {
         parent::configure();
         $this
             ->setName('up')
-            ->setDescription('Builds and run the container');
+            ->setDescription('Builds and run the container')
+            ->addOption('force', null, InputOption::VALUE_NONE);
     }
 
     /**
@@ -39,8 +40,8 @@ class UpCommand extends BaseCommand
             'application' => $input->getArgument('application'),
         );
 
-        $input = new ArrayInput($arguments);
-        $returnCode = $command->run($input, $output);
+        $arrayInput = new ArrayInput($arguments);
+        $returnCode = $command->run($arrayInput, $output);
 
 
         $command = $this->getApplication()->find('run');
@@ -48,9 +49,10 @@ class UpCommand extends BaseCommand
         $arguments = array(
             'command' => 'run',
             'application' => $input->getArgument('application'),
+            '--force' => $input->getOption('force'),
         );
 
-        $input = new ArrayInput($arguments);
-        $returnCode = $command->run($input, $output);
+        $arrayInput = new ArrayInput($arguments);
+        $returnCode = $command->run($arrayInput, $output);
     }
 }

@@ -21,17 +21,29 @@ class RunCommand extends BaseCommand
         parent::configure();
         $this
             ->setName('run')
-            ->setDescription('Run the container');
+            ->setDescription('Run the container')
+            ->addOption('force', null, InputOption::VALUE_NONE);
     }
 
     /**
-     * @param InputInterface  $input
+     * @param InputInterface $input
      * @param OutputInterface $output
+     *
+     * @throws \RuntimeException
      *
      * @return int|null|void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $currentContainerId = $this->getContainerId($input);
+        if ($this->getAhabApplication($input)->isContainerIdRunning($currentContainerId)) {
+            if ($input->getOption('force')) {
+                $this->getAhabApplication($input)->kill($currentContainerId);
+            } else {
+                throw new \RuntimeException(sprintf('Container %s already running', $currentContainerId));
+            }
+        }
+
         $config = $this->getConfiguration($input);
         $runConfig = $config->getRun();
         $ports = array();

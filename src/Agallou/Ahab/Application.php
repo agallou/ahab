@@ -33,4 +33,29 @@ class Application
 
         passthru($command);
     }
+
+    /**
+     * @param string $containerId
+     *
+     * @return bool
+     */
+    public function isContainerIdRunning($containerId)
+    {
+        $command = vsprintf('sudo docker ps -q --no-trunc | grep %s | wc -l', array(
+                escapeshellarg($containerId)
+            ));
+        $output = exec($command);
+
+        return($output == 1);
+    }
+
+    /**
+     * @param string $containerId
+     *
+     * @return string
+     */
+    public function kill($containerId)
+    {
+        exec(sprintf('sudo docker kill %s', escapeshellarg($containerId)));
+    }
 }

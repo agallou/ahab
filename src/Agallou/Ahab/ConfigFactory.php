@@ -22,12 +22,13 @@ class ConfigFactory
 
     /**
      * @param string $application
-     *
-     * @return Config
+     * @param string $dataDir
      *
      * @throws \RuntimeException
+     * @return Config
+     *
      */
-    public function load($application)
+    public function load($application, $dataDir)
     {
 
         $configPath = $this->configPath . $application;
@@ -46,11 +47,16 @@ class ConfigFactory
         $buildConfig->setDockerfileDir($value['build']['dockerfile_dir']);
         $buildConfig->setName($value['build']['name']);
 
+        $volumes = array();
+        foreach ($value['run']['volumes'] as $volume) {
+            $volumes[] = str_replace('%data_dir%', $dataDir, $volume);
+        }
+
         $runConfig = new RunConfig();
         $runConfig
             ->setName($value['run']['name'])
             ->setPorts($value['run']['ports'])
-            ->setVolumes($value['run']['volumes'])
+            ->setVolumes($volumes)
         ;
 
         $config = new Config();

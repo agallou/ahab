@@ -55,8 +55,9 @@ abstract class BaseCommand extends Command
     protected function getConfiguration(InputInterface $input)
     {
         $ahabConfigPath = $this->getAhab()->getConfigDir();
+        $dataDir = $this->getAhab()->getDataDir($input->getArgument('application'));
         $factory =  new ConfigFactory($ahabConfigPath);
-        return $factory->load($input->getArgument('application'));
+        return $factory->load($input->getArgument('application'), $dataDir);
 
     }
 

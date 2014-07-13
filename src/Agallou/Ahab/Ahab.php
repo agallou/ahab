@@ -64,4 +64,14 @@ class Ahab
     {
         return $this->initAhabSubdirectory('containers');
     }
+
+    /**
+     * @param string $application
+     *
+     * @return string
+     */
+    public function getDataDir($application)
+    {
+        return $this->initAhabSubdirectory('data' . DIRECTORY_SEPARATOR . $application);
+    }
 }

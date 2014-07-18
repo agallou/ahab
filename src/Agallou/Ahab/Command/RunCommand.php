@@ -54,7 +54,7 @@ class RunCommand extends BaseCommand
         foreach ($runConfig->getVolumes() as $volume) {
             $volumes[] = ' --volume=' . $volume;
         }
-        $command = vsprintf('sudo docker run -i -t -d %s %s %s', array(
+        $command = vsprintf('run -i -t -d %s %s %s', array(
             implode(' ', $ports),
             implode(' ', $volumes),
             $runConfig->getName()

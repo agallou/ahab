@@ -24,7 +24,7 @@ class Application
     {
         $buildConfig = $this->config->getBuild();
         $command = vsprintf(
-            'sudo docker build -t %s %s',
+            'docker build -t %s %s',
             array(
                 escapeshellarg($buildConfig->getName()),
                 escapeshellarg($buildConfig->getDockerfileDir()),
@@ -41,7 +41,7 @@ class Application
      */
     public function isContainerIdRunning($containerId)
     {
-        $command = vsprintf('sudo docker ps -q --no-trunc | grep %s | wc -l', array(
+        $command = vsprintf('docker ps -q --no-trunc | grep %s | wc -l', array(
                 escapeshellarg($containerId)
             ));
         $output = exec($command);
@@ -56,6 +56,6 @@ class Application
      */
     public function kill($containerId)
     {
-        exec(sprintf('sudo docker kill %s', escapeshellarg($containerId)));
+        exec(sprintf('docker kill %s', escapeshellarg($containerId)));
     }
 }

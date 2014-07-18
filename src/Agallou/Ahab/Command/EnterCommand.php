@@ -31,7 +31,7 @@ class EnterCommand extends BaseCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $cmd = sprintf('exec >/dev/tty 2>/dev/tty </dev/tty && docker-enter %s %s', $this->getContainerId($input), $input->getArgument('cmd'));
+        $cmd = sprintf('exec >/dev/tty 2>/dev/tty </dev/tty && sudo docker-enter %s %s', $this->getContainerId($input), $input->getArgument('cmd'));
         passthru($cmd);
     }
 }
